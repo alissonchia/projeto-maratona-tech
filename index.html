@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimento Solidário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            color: #fff;
+            vertical-align: middle;
+        }
+        .logo-icon {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .item-list {
+            margin-top: 20px;
+        }
+        .item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .info-section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #eafaf1;
+            border-radius: 5px;
+        }
+        .info-section p {
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffe5e5;
+            border: 1px solid #f4a1a1;
+            color: #d9534f;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🍽️</span> Alimento Solidário
+        </div>
+        <p>Conectando pequenos negócios com instituições de caridade para reduzir o desperdício de alimentos.</p>
+    </header>
+    <div class="container">
+        <div class="info-section">
+            <h2>Sobre o Alimento Solidário</h2>
+            <p>O <strong>Alimento Solidário</strong> é um protótipo de plataforma criado para enfrentar o problema do desperdício de alimentos em pequenos negócios. Este protótipo serve como uma apresentação da ideia e demonstra como a plataforma pode conectar estabelecimentos com alimentos excedentes a instituições de caridade necessitadas.</p>
+            <p><strong>Objetivo:</strong></p>
+            <p>Nossa meta é reduzir o desperdício de alimentos e apoiar comunidades carentes através da facilitação de doações de alimentos excedentes de pequenos negócios para organizações de caridade.</p>
+            <p><strong>Como Funciona:</strong></p>
+            <ul>
+                <li><strong>Cadastro de Negócios:</strong> Pequenos negócios podem listar os alimentos excedentes disponíveis para doação.</li>
+                <li><strong>Cadastro de Instituições:</strong> Organizações de caridade podem se registrar para receber essas doações.</li>
+                <li><strong>Correspondência:</strong> A plataforma sugere correspondências entre alimentos e instituições com base em localização e necessidades.</li>
+                <li><strong>Notificações:</strong> Negócios e instituições são notificados sobre novos alimentos disponíveis.</li>
+                <li><strong>Controle de Estoque:</strong> Negócios podem atualizar suas ofertas e instituições podem gerenciar os recebimentos.</li>
+            </ul>
+            <p>Este é um <strong>protótipo</strong> e tem o objetivo de ilustrar o conceito e os benefícios potenciais da plataforma. Ele está em fase de desenvolvimento e pode ser aprimorado para uma solução real que possa fazer a diferença.</p>
+        </div>
+        <h2>Cadastro de Negócio</h2>
+        <form id="business-form">
+            <label for="business-name">Nome do Negócio:</label>
+            <input type="text" id="business-name" name="business-name" required>
+            
+            <label for="food-item">Item de Alimento:</label>
+            <input type="text" id="food-item" name="food-item" required>
+            
+            <label for="quantity">Quantidade:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            
+            <label for="expiration-date">Data de Validade:</label>
+            <input type="date" id="expiration-date" name="expiration-date" required>
+            
+            <button type="submit">Cadastrar Alimento</button>
+        </form>
+        
+        <h2>Itens Disponíveis</h2>
+        <div class="item-list" id="item-list">
+            <!-- Lista de itens será inserida aqui -->
+        </div>
+    </div>
+    <footer>
+        <p>Feito por Alisson Chiapetti</p>
+    </footer>
+    <script>
+        document.getElementById('business-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const businessName = document.getElementById('business-name').value;
+            const foodItem = document.getElementById('food-item').value;
+            const quantity = document.getElementById('quantity').value;
+            const expirationDate = document.getElementById('expiration-date').value;
+
+            const itemList = document.getElementById('item-list');
+
+            const newItem = document.createElement('div');
+            newItem.classList.add('item');
+            newItem.innerHTML = `
+                <h3>${foodItem}</h3>
+                <p><strong>Negócio:</strong> ${businessName}</p>
+                <p><strong>Quantidade:</strong> ${quantity}</p>
+                <p><strong>Data de Validade:</strong> ${expirationDate}</p>
+            `;
+
+            itemList.appendChild(newItem);
+
+            document.getElementById('business-form').reset();
+        });
+    </script>
+</body>
+</html>
